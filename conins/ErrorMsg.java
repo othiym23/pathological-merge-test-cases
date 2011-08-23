@@ -24,6 +24,7 @@ public class ErrorMsg {
   public static final int CR1 = 4;
   public static final int CR2 = 5;
   public static final int CRP = 6;
+  public static final int ENA = 7;
 
   public String ema[];
 
@@ -38,6 +39,7 @@ public class ErrorMsg {
         ema[CR1] = ReBu.grbGet("cd_CantRead1.text");
         ema[CR2] = ReBu.grbGet("cd_CantRead2.text");
         ema[CRP] = ReBu.grbGet("cd_CantReadP.text");
+        ema[ENA] = ReBu.grbGet("cd_EncodeFNA.text");
     }
 
     /**

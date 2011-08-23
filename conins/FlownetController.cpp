@@ -40,11 +40,12 @@ BEGIN_MESSAGE_MAP(CFlownetController, CODController)
 	ON_COMMAND(ID_OD_DRAW_SELECT, OnDrawSelect)
 	ON_COMMAND(ID_OD_DRAW_TEXT, OnDrawText)
 	ON_COMMAND(ID_TOGGLE_PHANTOMS,OnTogglePhantomElements)
+	ON_COMMAND(ID_MERGE_NODES,OnMergeNodes)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE,OnUpdateEditPaste)
 	ON_UPDATE_COMMAND_UI(ID_LINK_NORMAL,OnUpdateLinkNormal)
 	ON_UPDATE_COMMAND_UI(ID_LINK_ORTHOGONAL,OnUpdateLinkOrthogonal)
 	ON_UPDATE_COMMAND_UI(ID_TOGGLE_PHANTOMS,OnUpdateTogglePhantomElements)
-
+	ON_UPDATE_COMMAND_UI(ID_MERGE_NODES,OnUpdateMergeNodes)
 END_MESSAGE_MAP()
 
 extern UINT WM_INSERT_NODE1;
@@ -1156,5 +1157,267 @@ void CFlownetController::OnTogglePhantomElements()
 void CFlownetController::OnUpdateTogglePhantomElements(CCmdUI *pCmdUI)
 {
 	pCmdUI->SetCheck(m_bPhantomsVisible);
+}
+
+BOOL CFlownetController::IsSelectionNodesOnly()
+{
+	BOOL l_bResult(FALSE);
+
+	// First Get the current selection set
+	CODComponentSet* l_pCurrentSelection = GetSelection();
+
+	if (l_pCurrentSelection->GetSize()==0) 
+	{
+		return FALSE;
+	}
+
+	// Establish that the set consists of nodes only
+	{
+		// Iterate through the set to ensure they are of type node
+		CODComponentIterator l_CompIterator(l_pCurrentSelection);
+		CODComponent* l_pComp = l_CompIterator.GetFirst();
+
+		BOOL l_bNonNodeFound(FALSE);
+
+		for (; l_pComp!=0; l_pComp = l_CompIterator.GetNext())
+		{
+			if (l_pComp->GetType()!=_T("Node"))
+			{
+				// We can't go any further
+				l_bNonNodeFound = TRUE;
+				break;
+			}
+		}
+
+		if (l_bNonNodeFound)
+		{
+			l_bResult = FALSE;
+		}
+		else
+		{
+			l_bResult = TRUE;
+		}
+	}
+
+	return l_bResult;
+}
+
+void CFlownetController::OnUpdateMergeNodes(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(IsLegalMerge());
+}
+
+BOOL CFlownetController::IsLegalMerge()
+{
+	BOOL l_bResult(FALSE);
+	
+	if (!IsSelectionNodesOnly()) 
+	{
+		return l_bResult;
+	}
+
+	CODComponentSet* l_pCurrentSelection = GetSelection();
+
+	// At this stage we have a selection consisting only of flownet-nodes.
+	// We'll create a map so we can rapidly see if a node is present in the collection
+	CODNodeMap l_SelectedNodes;
+	{
+		CODComponentIterator l_SelectedIt(l_pCurrentSelection);
+		CODSymbolComponent* l_SelectedComp = (CODSymbolComponent*)l_SelectedIt.GetFirst();
+		while (l_SelectedComp)
+		{
+			l_SelectedNodes.AddNode(l_SelectedComp);
+			l_SelectedComp = (CODSymbolComponent*)l_SelectedIt.GetNext();
+		}
+	}
+
+	// Get the "Nodes" ( which must be flownet elements ), that are adjacent to the selection
+	CODNodeArray l_AdjacentElements;
+	{
+		CODComponentIterator l_SelectedIt(l_pCurrentSelection);
+		CODSymbolComponent* l_SelectedComp = (CODSymbolComponent*)l_SelectedIt.GetFirst();
+		while (l_SelectedComp)
+		{
+			l_SelectedComp->GetNodesAdjacent(&l_AdjacentElements);
+			l_SelectedComp = (CODSymbolComponent*)l_SelectedIt.GetNext();
+		}
+	}
+
+	// For each flownet-element determine the connected-flownet nodes AND
+	// ensure that only one node is part of the original selection
+	{
+		typedef Iterator_T<CODNodePtr> NodeIterator;
+
+		// Iterate through the list of flownet-elements
+		NodeIterator l_ElementIt(&l_AdjacentElements);
+		CODSymbolComponent* l_pElement = (CODSymbolComponent*)(IODNode*)l_ElementIt.GetFirst();
+		while (l_pElement)
+		{
+			// Aquire the collection of adjacent nodes (in this case flownet-nodes)
+			CODNodeArray l_AdjacentNodes;
+			l_pElement->GetNodesAdjacent(&l_AdjacentNodes);
+			
+			// Count the number of adjacent-nodes, that also happen to be in the selection
+			int l_nAdjacentInSelection(0);
+			NodeIterator l_NodeIt(&l_AdjacentNodes);
+			IODNode* l_Node = l_NodeIt.GetFirst();
+			while (l_Node)
+			{
+				if (l_SelectedNodes.ContainsNode(l_Node))
+				{
+					++l_nAdjacentInSelection;
+				}
+				l_Node = l_NodeIt.GetNext();
+			}
+
+			// If the count is >1 the merge is illegal.
+			if (l_nAdjacentInSelection>1)
+			{
+				l_bResult = FALSE;
+				return l_bResult;
+			}
+
+			l_pElement = (CODSymbolComponent*)(IODNode*)l_ElementIt.GetNext();
+		}
+		l_bResult = TRUE;
+	}
+
+	return l_bResult;
+}
+
+void CFlownetController::OnMergeNodes()
+{
+	// First Get the current selection set
+	CODComponentSet* l_pCurrentSelection = GetSelection();
+
+	// Establish that the set consists of nodes only
+//	if (!IsSelectionNodesOnly()) return; // Remove this when the CmdUI thing is going
+
+	// Then figure out which component is the anchor
+	CODSymbolComponent* l_pAnchor = (CODSymbolComponent*)GetAnchor();
+
+	// Figure out which components are connected to the nodes, and make a set
+	// We also need a list of links excluding the "anchor" link
+	CODComponentSet l_ConnectedFromComponents;
+	CODComponentSet l_ConnectedToComponents;
+	CODComponentSet l_ConnectedLinks;
+	CODComponentSet l_SelectedNodes;
+	{
+		CODComponentIterator l_CompIterator(l_pCurrentSelection);
+		CODComponent* l_pComp = l_CompIterator.GetFirst();
+
+		for (; l_pComp!=0; l_pComp = l_CompIterator.GetNext())
+		{
+			// If we find a node then we add it to the list...
+			// BUT it can't be the anchor node
+			if (l_pComp == l_pAnchor)
+			{
+				continue;
+			}
+
+			l_SelectedNodes.Add(l_pComp);
+		}
+
+		// Now we need the edges (links) for each of the nodes
+		{
+			CODNodeArray l_ConnectedNodes;
+			CODEdgeArray l_NodeEdges;
+
+			typedef Iterator_T<CODNodePtr> NodeIterator;
+			typedef Iterator_T<CODEdgePtr> EdgeIterator;
+
+			CODComponentIterator l_CompIterator(&l_SelectedNodes);
+			CODSymbolComponent* l_pComp = (CODSymbolComponent*)l_CompIterator.GetFirst();
+
+			for (; l_pComp!=0; l_pComp = (CODSymbolComponent*)l_CompIterator.GetNext())
+			{
+				// Add the currently identified nodes to the "from" connected-component list
+				{
+					l_ConnectedNodes.RemoveAll();
+
+					l_pComp->GetNodesAdjacentFrom(&l_ConnectedNodes);
+
+					NodeIterator l_FromConCompIt(&l_ConnectedNodes);
+					IODNode* l_pElement = (IODNode*)l_FromConCompIt.GetFirst();
+					for(;l_pElement != 0; l_pElement = l_FromConCompIt.GetNext())
+					{
+						l_ConnectedFromComponents.Add((CODSymbolComponent*)l_pElement);
+					}
+				}
+
+				// Add the currently identified nodes to the "to" connected-component list
+				{
+					l_ConnectedNodes.RemoveAll();
+
+					l_pComp->GetNodesAdjacentTo(&l_ConnectedNodes);
+
+					NodeIterator l_ToConCompIt(&l_ConnectedNodes);
+					IODNode* l_pElement = (IODNode*)l_ToConCompIt.GetFirst();
+					for(;l_pElement != 0; l_pElement = l_ToConCompIt.GetNext())
+					{
+						l_ConnectedToComponents.Add((CODSymbolComponent*)l_pElement);
+					}
+				}
+
+				// Add the currently identified Links to the entering-connected-link list
+				{
+					l_NodeEdges.RemoveAll();
+
+					l_pComp->GetEdges(&l_NodeEdges);
+
+					EdgeIterator l_ConLinkEIt(&l_NodeEdges);
+					IODEdge* l_pElement = (IODEdge*)l_ConLinkEIt.GetFirst();
+					for(;l_pElement != 0; l_pElement = l_ConLinkEIt.GetNext())
+					{
+						l_ConnectedLinks.Add((CODLinkComponent*)l_pElement);
+					}
+				}
+			}
+		}
+	}
+
+	// Delete the Nodes that are not the anchor, and delete associated links
+	{
+		ExecuteDeleteCommand(&l_ConnectedLinks);
+		ExecuteDeleteCommand(&l_SelectedNodes);
+	}
+
+	// Draw links between orphaned elements and anchor node.
+	{
+		CODComponentIterator l_FromCompIt(&l_ConnectedToComponents);
+		CODSymbolComponent* l_pElement = (CODSymbolComponent*)l_FromCompIt.GetFirst();
+		for(;l_pElement != 0; l_pElement = (CODSymbolComponent*)l_FromCompIt.GetNext())
+		{
+			DrawLink(l_pElement, l_pAnchor);
+		}
+
+		CODComponentIterator l_ToCompIt(&l_ConnectedFromComponents);
+		l_pElement = (CODSymbolComponent*)l_ToCompIt.GetFirst();
+		for(; l_pElement != 0; l_pElement = (CODSymbolComponent*)l_ToCompIt.GetNext())
+		{
+			DrawLink(l_pAnchor, l_pElement);
+		}
+	}
+}
+
+
+void CFlownetController::DrawLink(CODSymbolComponent* pSrc, CODSymbolComponent* pTgt)
+{
+	// get a hold of the element's center port
+	CODPortComponent* pSrcPort  = pSrc->GetCenterPort();
+	CODPortComponent* pTgtPort = pTgt->GetCenterPort();
+	CPoint ptSrcPortLog  = pSrcPort->GetLocation();
+	CPoint ptTgtPortLog = pTgtPort->GetLocation();
+	CPoint ptSrcPortDev = ptSrcPortLog;
+	CPoint ptTgtPortDev = ptTgtPortLog;
+	VpLPtoDP(&ptSrcPortDev);
+	VpLPtoDP(&ptTgtPortDev);	
+
+	OnCreateNormalLink();
+	SetPropertiesNormalLink((CODLinkComponent*)m_pInsert);
+	CODController::LinkReady(0, ptSrcPortDev);
+	m_arPointsLog.Add(ptTgtPortLog);
+	m_pTargetPort = pTgtPort;
+	CODController::EndLink(0, ptTgtPortDev);
 }
 

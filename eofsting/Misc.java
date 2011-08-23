@@ -1,3 +1,33 @@
+/*
+ * @(#)Guiffy Misc Components - Misc.java    7-Jan-2001
+ *
+ * Copyright (c) 1998 - 2001  Guiffy Software.  All Rights Reserved.
+ * by: Bill W. Ritcher
+ *
+ */
+
+
+/**
+ * Misc Components for Guiffy
+ *
+ * @version 3.0 3-Jan-2000
+ * @author Bill W. Ritcher
+ */
+public class Misc {
+
+  void WWw_Action( ) {
+    RePaint_Immed();
+    // Action from Help, www - Browser to guiffy.com
+    BrowserControl.displayURL("http://www.guiffy.com/"); 
+ 
+  }
+
+  void Online_Action( ) {
+    RePaint_Immed();
+    // Action from Help, Online - Browser to guiffy.com/help
+    BrowserControl.displayURL("http://www.guiffy.com/hthelp.html"); 
+ 
+  }
 
   public void About_Action( ) {
     // Action from Help, About - Show the About Dialog
@@ -42,5 +72,25 @@
     long tm = rt.totalMemory() / 1024;
     System.err.println("Free memory(at About_Action)=" + fm + "KB  Total memory=" + tm + "KB");
 
-  }
+  } // End of About_Action method 
 
+  void Exit_Action( boolean no_Exit, JFrame fr) {
+
+    // Action from Exit 
+    if(no_Exit == true) {
+        if(fr != null) {
+          fr.dispose();
+        }
+    } else {
+        if(fork_Run == true) {
+          GuiffySS.programQuit();
+          if(fr != null) {
+            fr.dispose();
+          }
+        } else {
+          pcom.setVisible(false);
+        }
+    }
+  } // End of Exit_Action method
+
+} // End of Misc class

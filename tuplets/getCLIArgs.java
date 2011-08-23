@@ -11,7 +11,10 @@
             String textnums = arglows.substring(j);
             try {
               gufy.rvm_Ab = Integer.parseInt(textnums);
-            } catch(Exception e) { gufy.rvm_Ab = 0; }
+            } catch(Exception e) {
+              System.err.println("-Ab value parse error");
+              gufy.rvm_Ab = 0;
+            }
             break;
           }
         }
@@ -24,7 +27,10 @@
             String textnums = arglows.substring(j);
             try {
               gufy.rvm_Ae = Integer.parseInt(textnums);
-            } catch(Exception e) { gufy.rvm_Ae = 0; }
+            } catch(Exception e) {
+              System.err.println("-Ae value parse error");
+              gufy.rvm_Ae = 0;
+            }
             break;
           }
         }
@@ -38,7 +44,10 @@
             String textnums = arglows.substring(j);
             try {
               gufy.rvm_Cb = Integer.parseInt(textnums);
-            } catch(Exception e) { gufy.rvm_Cb = 0; }
+            } catch(Exception e) {
+              System.err.println("-Cb value parse error");
+              gufy.rvm_Cb = 0;
+            }
             break;
           }
         }
@@ -51,7 +60,43 @@
             String textnums = arglows.substring(j);
             try {
               gufy.rvm_Ce = Integer.parseInt(textnums);
-            } catch(Exception e) { gufy.rvm_Ce = 0; }
+            } catch(Exception e) {
+              System.err.println("-Ce value parse error");
+              gufy.rvm_Ce = 0;
+            }
+            break;
+          }
+        }
+        continue;
+      }
+
+      if( arglows.startsWith("-fb") ) {
+        gufy.rvm_Fb = 0;
+        for(int j = 0; j < arglows.length(); j++) {
+          if(Character.isDigit(arglows.charAt(j))) {
+            String textnums = arglows.substring(j);
+            try {
+              gufy.rvm_Fb = Integer.parseInt(textnums);
+            } catch(Exception e) {
+              System.err.println("-Fb value parse error");
+              gufy.rvm_Fb = 0;
+            }
+            break;
+          }
+        }
+        continue;
+      }
+      if( arglows.startsWith("-fe") ) {
+        gufy.rvm_Fe = 0;
+        for(int j = 0; j < arglows.length(); j++) {
+          if(Character.isDigit(arglows.charAt(j))) {
+            String textnums = arglows.substring(j);
+            try {
+              gufy.rvm_Fe = Integer.parseInt(textnums);
+            } catch(Exception e) {
+              System.err.println("-Fe value parse error");
+              gufy.rvm_Fe = 0;
+            }
             break;
           }
         }
@@ -80,3 +125,4 @@
         return;
       }
 
+    }

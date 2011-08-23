@@ -127,6 +127,115 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="2"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="3"
+				TypeLibraryName=".\Debug/PAServerWin.tlb"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..;..\..;..\..\database\verification;..\..\dbconversion;..\..\dbconversion\Ver56Objects;..\..\dbconversion\Ver80Tables;..\..\dbconversion\Ver56Tables;..\..\dbconversion\Ver55ServerTables;..\..\freeform\include;&quot;..\..\Code++\include\&quot;;&quot;..\..\Code++\include\mimepp&quot;;&quot;..\..\Code++\include\sys&quot;;..\..\reports;..\..\reports\xalync;..\..\reports\xercesc;..\..\Win;..\..\..\common;..\..\..\common\CodeRoot;..\..\..\common\MemoryManager;..\..\..\common\PowerUtilsWin;..\..\..\common\SSCE;..\..\..\common\ProductA;..\..\..\common\Rt;..\..\..\common\ProductA\Rt;&quot;..\..\..\common\UnitTest++\src&quot;;..\..\..\common\Win;&quot;$(RTDIR)\include\Rt3Support&quot;;&quot;$(RTDIR)\include\RtGui&quot;;&quot;$(RTDIR)\include\RtSql&quot;;&quot;$(RTDIR)\include\RtCore&quot;;&quot;$(RTDIR)\include&quot;"
+				PreprocessorDefinitions="WINVER=0x0410;_DEBUG;PRODUCTA;PASERVER;SPSERVER;TT_EN;WIN32;WIN64;_WIN64;_WINDOWS;S4CONSOLE;GDC_INCL;HAVE_JPEG;HAVE_LIBPNG;HAVE_LIBFREEFORM;SPRT;SSCE_UNICODE;BUILD_NUMBER=$(BUILDNUM);SPUNITTESTING;_CRT_SECURE_NO_DEPRECATE;NO_CODEROOT"
+				MinimalRebuild="true"
+				ExceptionHandling="2"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				TreatWChar_tAsBuiltInType="false"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile="$(OutDir)\PAServerWin.pch"
+				AssemblerListingLocation="$(OutDir)\"
+				ObjectFile="$(OutDir)\"
+				ProgramDataBaseFileName="$(OutDir)\"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+				CompileAs="2"
+				DisableSpecificWarnings="4996"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG;PRODUCTA;PASERVER;BUILD_NUMBER=$(BUILDNUM)"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="mfc80ud.lib mfcs80ud.lib MSVCPRTD.LIB MSVCRTD.LIB kernel32.lib user32.lib advapi32.lib oleaut32.lib atlsd.lib gdi32.lib ole32.lib comdlg32.lib winspool.lib comctl32.lib shlwapi.lib uuid.lib shell32.lib Wsock32.lib version.lib odbc32.lib xerces-c_2D.lib SSCE32Stateless.lib freeform2110_D.lib Rt3Supportd4.lib RtCored4.lib RtSqld4.lib RtGuid4.lib qgifd.lib qjpegd.lib UnitTest++.vsnet2005.lib icuucd.lib mimepp_sd.lib psapi.lib $(NOINHERIT)"
+				ShowProgress="0"
+				OutputFile="$(OutDir)\ProductA Server.exe"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="..\..\freeform\lib\Win\x64\debug;..\..\reports\Win\x64\Debug;..\..\..\common\SSCE\x64;&quot;$(RTDIR)\lib&quot;;&quot;$(RTDIR)\plugins\imageformats&quot;;&quot;..\..\..\common\UnitTest++\x64\Debug&quot;;&quot;..\..\Code++\lib\Win\x64\debug&quot;"
+				IgnoreAllDefaultLibraries="true"
+				IgnoreDefaultLibraryNames=""
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)\ProductA Server.pdb"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+				OutputManifestFile="$(IntDir)\$(TargetFileName).embed.manifest"
+				AdditionalManifestFiles=".\ProductA Server.manifest"
+				EmbedManifest="true"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="copy ..\..\reports\Win\x64\Debug\*.dll $(TargetDir)&#x0D;&#x0A;copy ..\..\reports\Win\x64\Debug\ReportModule.exe $(TargetDir)&#x0D;&#x0A;copy ..\..\reports\Win\x64\Debug\reportPluginLoader.exe $(TargetDir)&#x0D;&#x0A;echo ---------------------- Unit Tests ----------------------&#x0D;&#x0A;&quot;$(TargetPath)&quot; UnitTest&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\Release"
 			IntermediateDirectory=".\Release"
@@ -244,115 +353,6 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="copy ..\..\reports\Win\Release\*.dll .\Release&#x0D;&#x0A;copy ..\..\reports\Win\Release\ReportModule.exe .\Release&#x0D;&#x0A;copy ..\..\reports\Win\Release\reportPluginLoader.exe .\Release&#x0D;&#x0A;"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
-			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="true"
-				SuppressStartupBanner="true"
-				TargetEnvironment="3"
-				TypeLibraryName=".\Debug/PAServerWin.tlb"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..;..\..;..\..\database\verification;..\..\dbconversion;..\..\dbconversion\Ver56Objects;..\..\dbconversion\Ver80Tables;..\..\dbconversion\Ver56Tables;..\..\dbconversion\Ver55ServerTables;..\..\freeform\include;&quot;..\..\Code++\include\&quot;;&quot;..\..\Code++\include\mimepp&quot;;&quot;..\..\Code++\include\sys&quot;;..\..\reports;..\..\reports\xalync;..\..\reports\xercesc;..\..\Win;..\..\..\common;..\..\..\common\CodeRoot;..\..\..\common\MemoryManager;..\..\..\common\PowerUtilsWin;..\..\..\common\SSCE;..\..\..\common\ProductA;..\..\..\common\Rt;..\..\..\common\ProductA\Rt;&quot;..\..\..\common\UnitTest++\src&quot;;..\..\..\common\Win;&quot;$(RTDIR)\include\Rt3Support&quot;;&quot;$(RTDIR)\include\RtGui&quot;;&quot;$(RTDIR)\include\RtSql&quot;;&quot;$(RTDIR)\include\RtCore&quot;;&quot;$(RTDIR)\include&quot;"
-				PreprocessorDefinitions="WINVER=0x0410;_DEBUG;PRODUCTA;PASERVER;SPSERVER;TT_EN;WIN32;WIN64;_WIN64;_WINDOWS;S4CONSOLE;GDC_INCL;HAVE_JPEG;HAVE_LIBPNG;HAVE_LIBFREEFORM;SPRT;SSCE_UNICODE;BUILD_NUMBER=$(BUILDNUM);SPUNITTESTING;_CRT_SECURE_NO_DEPRECATE;NO_CODEROOT"
-				MinimalRebuild="true"
-				ExceptionHandling="2"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				TreatWChar_tAsBuiltInType="false"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="$(OutDir)\PAServerWin.pch"
-				AssemblerListingLocation="$(OutDir)\"
-				ObjectFile="$(OutDir)\"
-				ProgramDataBaseFileName="$(OutDir)\"
-				BrowseInformation="1"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-				CompileAs="2"
-				DisableSpecificWarnings="4996"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;PRODUCTA;PASERVER;BUILD_NUMBER=$(BUILDNUM)"
-				Culture="1033"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="mfc80ud.lib mfcs80ud.lib MSVCPRTD.LIB MSVCRTD.LIB kernel32.lib user32.lib advapi32.lib oleaut32.lib atlsd.lib gdi32.lib ole32.lib comdlg32.lib winspool.lib comctl32.lib shlwapi.lib uuid.lib shell32.lib Wsock32.lib version.lib odbc32.lib xerces-c_2D.lib SSCE32Stateless.lib freeform2110_D.lib Rt3Supportd4.lib RtCored4.lib RtSqld4.lib RtGuid4.lib qgifd.lib qjpegd.lib UnitTest++.vsnet2005.lib icuucd.lib mimepp_sd.lib psapi.lib $(NOINHERIT)"
-				ShowProgress="0"
-				OutputFile="$(OutDir)\ProductA Server.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\freeform\lib\Win\x64\debug;..\..\reports\Win\x64\Debug;..\..\..\common\SSCE\x64;&quot;$(RTDIR)\lib&quot;;&quot;$(RTDIR)\plugins\imageformats&quot;;&quot;..\..\..\common\UnitTest++\x64\Debug&quot;;&quot;..\..\Code++\lib\Win\x64\debug&quot;"
-				IgnoreAllDefaultLibraries="true"
-				IgnoreDefaultLibraryNames=""
-				DelayLoadDLLs="$(NOINHERIT)"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)\ProductA Server.pdb"
-				SubSystem="2"
-				TargetMachine="17"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-				OutputManifestFile="$(IntDir)\$(TargetFileName).embed.manifest"
-				AdditionalManifestFiles=".\ProductA Server.manifest"
-				EmbedManifest="true"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\reports\Win\x64\Debug\*.dll $(TargetDir)&#x0D;&#x0A;copy ..\..\reports\Win\x64\Debug\ReportModule.exe $(TargetDir)&#x0D;&#x0A;copy ..\..\reports\Win\x64\Debug\reportPluginLoader.exe $(TargetDir)&#x0D;&#x0A;echo ---------------------- Unit Tests ----------------------&#x0D;&#x0A;&quot;$(TargetPath)&quot; UnitTest&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -704,6 +704,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\common\CLFAsciiCharStrList.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\CLFAsciiCharStrList_Test.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\CListWindowAttributes.cpp"
 				>
 			</File>
@@ -769,6 +777,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\ProductA\CReportedBy.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\CRequirement.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CRequirementVersion.cpp"
 				>
 			</File>
 			<File
@@ -873,6 +889,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\CStyleSheetMgr_Test.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CSubtype.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CSubtypeRequirement.cpp"
 				>
 			</File>
 			<File
@@ -1008,6 +1032,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\common\CTTFormattedString.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\CTTFormattedString_Test.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\CTTHistoryEvent.cpp"
 				>
 			</File>
@@ -1081,6 +1113,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\CTTRequestGen.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CTTRequestRM.cpp"
 				>
 			</File>
 			<File
@@ -1188,6 +1224,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\CTTVersionedItem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\CTTVersionedItemMgr.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\ProductA\CTTWebHelper.cpp"
 				>
 			</File>
@@ -1213,6 +1257,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\CustFieldValQuickList.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CVersion.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CVersionInfo.cpp"
 				>
 			</File>
 			<File
@@ -3471,6 +3523,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\common\ProductA\ProductADatabase_Subtypes.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\common\ProductA\ProductADatabase_Tasks.cpp"
 					>
 				</File>
@@ -3567,6 +3623,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\ProductADbCache_Subtypes.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\ProductADbCache_TestObjects.cpp"
 					>
 				</File>
@@ -3620,6 +3680,10 @@
 				</File>
 				<File
 					RelativePath="..\CTTUserSession_Reporting.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\CTTUserSession_RM.cpp"
 					>
 				</File>
 				<File
@@ -4022,7 +4086,7 @@
 					RelativePath="..\..\..\common\Win\CWinExceptionStackTrace.cpp"
 					>
 					<FileConfiguration
-						Name="Release|Win32"
+						Name="Debug|x64"
 						ExcludedFromBuild="true"
 						>
 						<Tool
@@ -4030,7 +4094,7 @@
 						/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="Debug|x64"
+						Name="Release|Win32"
 						ExcludedFromBuild="true"
 						>
 						<Tool
@@ -4362,6 +4426,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\common\CLFAsciiCharStrList.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\CListWindowAttributes.h"
 				>
 			</File>
@@ -4431,6 +4499,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\ProductA\CReportedBy.h"
+				>
+			</File>
+			<File
+				RelativePath="..\CRequirement.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CRequirementVersion.h"
 				>
 			</File>
 			<File
@@ -4523,6 +4599,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\CStyleSheetMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CSubtype.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CSubtypeRequirement.h"
 				>
 			</File>
 			<File
@@ -4638,6 +4722,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\common\CTTFormattedString.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\CTTHistoryEvent.h"
 				>
 			</File>
@@ -4707,6 +4795,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\CTTRequestGen.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CTTRequestRM.h"
 				>
 			</File>
 			<File
@@ -4798,6 +4890,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\CTTVersionedItem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\CTTVersionedItemMgr.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\ProductA\CTTWebHelper.h"
 				>
 			</File>
@@ -4819,6 +4919,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\CustFieldValQuickList.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CVersion.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\ProductA\CVersionInfo.h"
 				>
 			</File>
 			<File
@@ -7757,7 +7865,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Debug|x64"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -7767,7 +7875,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|x64"
+					Name="Release|Win32"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
