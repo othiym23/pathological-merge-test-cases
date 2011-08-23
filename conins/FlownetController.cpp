@@ -44,6 +44,8 @@ BEGIN_MESSAGE_MAP(CFlownetController, CODController)
 	ON_UPDATE_COMMAND_UI(ID_LINK_NORMAL,OnUpdateLinkNormal)
 	ON_UPDATE_COMMAND_UI(ID_LINK_ORTHOGONAL,OnUpdateLinkOrthogonal)
 	ON_UPDATE_COMMAND_UI(ID_TOGGLE_PHANTOMS,OnUpdateTogglePhantomElements)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 
 END_MESSAGE_MAP()
 
@@ -1158,3 +1160,12 @@ void CFlownetController::OnUpdateTogglePhantomElements(CCmdUI *pCmdUI)
 	pCmdUI->SetCheck(m_bPhantomsVisible);
 }
 
+void CFlownetController::OnUpdateEditUndo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(FALSE);
+}
+
+void CFlownetController::OnUpdateEditRedo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(FALSE);
+}

@@ -50,7 +50,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..;..\..;..\..\database\verification;..\..\dbconversion;..\..\dbconversion\Ver56Objects;..\..\dbconversion\Ver80Tables;..\..\dbconversion\Ver56Tables;..\..\dbconversion\Ver55ServerTables;..\..\freeform\include;&quot;..\..\Code++\include\&quot;;&quot;..\..\Code++\include\mimepp&quot;;&quot;..\..\Code++\include\sys&quot;;..\..\reports;..\..\reports\xalync;..\..\reports\xercesc;..\..\Win;..\..\..\common;..\..\..\common\CodeRoot;..\..\..\common\MemoryManager;..\..\..\common\PowerUtilsWin;..\..\..\common\Rt;..\..\..\common\SSCE;..\..\..\common\ProductA;..\..\..\common\ProductA\Rt;&quot;..\..\..\common\UnitTest++\src&quot;;..\..\..\common\Win;&quot;$(RTDIR)\include\Rt3Support&quot;;&quot;$(RTDIR)\include\RtGui&quot;;&quot;$(RTDIR)\include\RtSql&quot;;&quot;$(RTDIR)\include\RtCore&quot;;&quot;$(RTDIR)\include&quot;"
+				AdditionalIncludeDirectories="..;..\..;..\..\database\verification;..\..\dbconversion;..\..\dbconversion\Ver56Objects;..\..\dbconversion\Ver80Tables;..\..\dbconversion\Ver82Tables;..\..\dbconversion\Ver56Tables;..\..\dbconversion\Ver55ServerTables;..\..\freeform\include;&quot;..\..\Code++\include\&quot;;&quot;..\..\Code++\include\mimepp&quot;;&quot;..\..\Code++\include\sys&quot;;..\..\reports;..\..\reports\xalync;..\..\reports\xercesc;..\..\Win;..\..\..\common;..\..\..\common\CodeRoot;..\..\..\common\MemoryManager;..\..\..\common\PowerUtilsWin;..\..\..\common\Rt;..\..\..\common\SSCE;..\..\..\common\ProductA;..\..\..\common\ProductA\Rt;&quot;..\..\..\common\UnitTest++\src&quot;;..\..\..\common\Win;&quot;$(RTDIR)\include\Rt3Support&quot;;&quot;$(RTDIR)\include\RtGui&quot;;&quot;$(RTDIR)\include\RtSql&quot;;&quot;$(RTDIR)\include\RtCore&quot;;&quot;$(RTDIR)\include&quot;"
 				PreprocessorDefinitions="WINVER=0x0410;_DEBUG;PRODUCTA;PASERVER;SPSERVER;TT_EN;WIN32;_WINDOWS;S4CONSOLE;GDC_INCL;HAVE_JPEG;HAVE_LIBPNG;HAVE_LIBFREEFORM;SPRT;SSCE_UNICODE;BUILD_NUMBER=$(BUILDNUM);SPUNITTESTING;_CRT_SECURE_NO_DEPRECATE;_USE_32BIT_TIME_T"
 				MinimalRebuild="true"
 				ExceptionHandling="2"
@@ -162,7 +162,7 @@
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..;..\..;..\..\database\verification;..\..\dbconversion;..\..\dbconversion\Ver56Objects;..\..\dbconversion\Ver80Tables;..\..\dbconversion\Ver56Tables;..\..\dbconversion\Ver55ServerTables;..\..\freeform\include;&quot;..\..\Code++\include\&quot;;&quot;..\..\Code++\include\mimepp&quot;;&quot;..\..\Code++\include\sys&quot;;..\..\reports;..\..\reports\xalync;..\..\reports\xercesc;..\..\Win;..\..\..\common;..\..\..\common\CodeRoot;..\..\..\common\MemoryManager;..\..\..\common\PowerUtilsWin;..\..\..\common\Rt;..\..\..\common\SSCE;..\..\..\common\ProductA;..\..\..\common\ProductA\Rt;&quot;..\..\..\common\UnitTest++\src&quot;;..\..\..\common\Win;&quot;$(RTDIR)\include\Rt3Support&quot;;&quot;$(RTDIR)\include\RtGui&quot;;&quot;$(RTDIR)\include\RtSql&quot;;&quot;$(RTDIR)\include\RtCore&quot;;&quot;$(RTDIR)\include&quot;"
+				AdditionalIncludeDirectories="..;..\..;..\..\database\verification;..\..\dbconversion;..\..\dbconversion\Ver56Objects;..\..\dbconversion\Ver80Tables;..\..\dbconversion\Ver82Tables;..\..\dbconversion\Ver56Tables;..\..\dbconversion\Ver55ServerTables;..\..\freeform\include;&quot;..\..\Code++\include\&quot;;&quot;..\..\Code++\include\mimepp&quot;;&quot;..\..\Code++\include\sys&quot;;..\..\reports;..\..\reports\xalync;..\..\reports\xercesc;..\..\Win;..\..\..\common;..\..\..\common\CodeRoot;..\..\..\common\MemoryManager;..\..\..\common\PowerUtilsWin;..\..\..\common\Rt;..\..\..\common\SSCE;..\..\..\common\ProductA;..\..\..\common\ProductA\Rt;&quot;..\..\..\common\UnitTest++\src&quot;;..\..\..\common\Win;&quot;$(RTDIR)\include\Rt3Support&quot;;&quot;$(RTDIR)\include\RtGui&quot;;&quot;$(RTDIR)\include\RtSql&quot;;&quot;$(RTDIR)\include\RtCore&quot;;&quot;$(RTDIR)\include&quot;"
 				PreprocessorDefinitions="WINVER=0x0410;NDEBUG;PRODUCTA;PASERVER;SPSERVER;TT_EN;WIN32;_WINDOWS;S4CONSOLE;GDC_INCL;HAVE_JPEG;HAVE_LIBPNG;HAVE_LIBFREEFORM;SPRT;SSCE_UNICODE;BUILD_NUMBER=$(BUILDNUM);_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T"
 				StringPooling="true"
 				MinimalRebuild="true"
@@ -704,6 +704,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\common\CLFAsciiCharStrList.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\CLFAsciiCharStrList_Test.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\CListWindowAttributes.cpp"
 				>
 			</File>
@@ -1005,6 +1013,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\ProductA\CTTFindUserOptions.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\CTTFormattedString.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\CTTFormattedString_Test.cpp"
 				>
 			</File>
 			<File
@@ -3414,6 +3430,86 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="Ver82Files"
+					>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82WidgetTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FieldDefinitionsTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FileAttachmentTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FolderTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82ObjectEventTblGeneric.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82ObjectEventTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82TestCaseTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82TestingTblMgr.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblWidget.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblEventDefinitions.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblFieldDefinitions.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblFileAttachment.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblFolder.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblLinkDefinition.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblLinkItem.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblObjectEvent.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblStateDefinitions.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblTestCase.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblTesting.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="ProductADatabase"
@@ -4362,6 +4458,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\common\CLFAsciiCharStrList.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\common\CListWindowAttributes.h"
 				>
 			</File>
@@ -4635,6 +4735,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\common\ProductA\CTTFindUserOptions.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\common\CTTFormattedString.h"
 				>
 			</File>
 			<File
@@ -7437,6 +7541,110 @@
 					</File>
 					<File
 						RelativePath="..\..\dbconversion\Ver80Tables\RtDbTbl80Filter.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Ver82Files"
+					>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82WidgetTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82WidgetTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FieldDefinitionsTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FieldDefinitionsTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FileAttachmentTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FileAttachmentTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FolderTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82FolderTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82ObjectEventTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82ObjectEventTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82TestCaseTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82TestCaseTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82TestingTblGeneric.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\C82TestingTblMgr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblWidget.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblEventDefinitions.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblFieldDefinitions.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblFileAttachment.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblFolder.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblLinkDefinition.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblLinkItem.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblObjectEvent.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblStateDefinitions.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblTestCase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\dbconversion\Ver82Tables\CbDb82TblTesting.h"
 						>
 					</File>
 				</Filter>

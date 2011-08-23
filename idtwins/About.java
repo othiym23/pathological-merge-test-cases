@@ -4,7 +4,8 @@
     RePaint_Immed();
     String abts = "Guiffy - GUI diFF & SureMerge 2/3-waY tool\n" +
                   "             Created by Bill Ritcher\n" +
-                  "Guiffy Software, Inc. - Copyright 1998 - 2003\n" +
+                  "Guiffy Software, Inc. - Copyright 1998 - 2004\n" +
+                  "     Protected by U.S. Patent Re. 35,861     \n" +
                   "              Guiffy "+GRC.GUIFFY_MAJOR_RELEASE+"." +
                   GRC.GUIFFY_MINOR_RELEASE+" - Build "+
                   GRC.GUIFFY_BUILD_NUMBER+"\n\n" +

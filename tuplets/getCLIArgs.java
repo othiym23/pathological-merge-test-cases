@@ -2,7 +2,6 @@
     for( argi = 0; argi < args.length; argi++ ) {
       if(args[argi] == null) continue;
       String arglows = args[argi].toLowerCase();
-      //System.err.println("Args="+arglows);
 
       if( arglows.startsWith("-ab") ) {
         gufy.rvm_Ab = 0;
@@ -52,6 +51,33 @@
             try {
               gufy.rvm_Ce = Integer.parseInt(textnums);
             } catch(Exception e) { gufy.rvm_Ce = 0; }
+            break;
+          }
+        }
+        continue;
+      }
+
+      if( arglows.startsWith("-fb") ) {
+        gufy.rvm_Fb = 0;
+        for(int j = 0; j < arglows.length(); j++) {
+          if(Character.isDigit(arglows.charAt(j))) {
+            String textnums = arglows.substring(j);
+            try {
+              gufy.rvm_Fb = Integer.parseInt(textnums);
+            } catch(Exception e) { gufy.rvm_Fb = 0; }
+            break;
+          }
+        }
+        continue;
+      }
+      if( arglows.startsWith("-fe") ) {
+        gufy.rvm_Fe = 0;
+        for(int j = 0; j < arglows.length(); j++) {
+          if(Character.isDigit(arglows.charAt(j))) {
+            String textnums = arglows.substring(j);
+            try {
+              gufy.rvm_Fe = Integer.parseInt(textnums);
+            } catch(Exception e) { gufy.rvm_Fe = 0; }
             break;
           }
         }
